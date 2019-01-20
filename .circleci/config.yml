@@ -22,7 +22,7 @@ jobs:
           command: sudo npm i -g markdownlint-cli
       - run:
           name: run linter
-          command: ./docs/
+          command: markdownlint ./docs/
 
 workflows:
   version: 2
