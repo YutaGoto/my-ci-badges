@@ -1,7 +1,7 @@
 version: 2.1
 
 node_image: &node_image
-  circleci/node:10.1.0-browsers
+  circleci/node:10.1.0
 
 executors:
   docker-exec:
@@ -13,9 +13,13 @@ jobs:
     executor: docker-exec
     working_directory: ~/app
     steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@latest
       - run:
           name: install markdown linter
-          command: npm i -g markdownlint-cli
+          command: sudo npm i -g markdownlint-cli
       - run:
           name: run linter
           command: ./docs/
